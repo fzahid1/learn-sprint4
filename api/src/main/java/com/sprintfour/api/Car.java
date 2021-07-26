@@ -13,9 +13,12 @@ public class Car {
     private String year;
     private String make;
     private String model;
+    public Car(){
+        
+    }
 
-    public Car(UUID id, String year, String make, String model) {
-        this.id = id;
+    public Car(String year, String make, String model) {
+
         this.year = year;
         this.make = make;
         this.model = model;

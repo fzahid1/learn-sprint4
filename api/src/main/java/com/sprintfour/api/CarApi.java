@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 //@RequestMapping("/cars")
@@ -34,7 +34,7 @@ public class CarApi {
         Car carToEdit = repo.findById(id).orElse(null);
 
         if(carToEdit == null) {
-            throw new ReponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
         }
 
         carToEdit.setYear(car.getYear());
@@ -46,7 +46,7 @@ public class CarApi {
         Car carToEdit = repo.findById(id).orElse(null);
 
         if(carToEdit == null) {
-            throw new ReponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+            throw new  ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
         }
 
         carToEdit.setMake(car.getMake());
@@ -58,7 +58,8 @@ public class CarApi {
         Car carToEdit = repo.findById(id).orElse(null);
 
         if(carToEdit == null) {
-            throw new ReponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+            throw new  ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+            
         }
 
         carToEdit.setModel(car.getModel());
