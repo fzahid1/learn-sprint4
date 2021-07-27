@@ -1,10 +1,8 @@
 package com.sprintfour.api;
 import java.io.Serializable;
-import java.util.UUID;
 
 import javax.persistence.*;
 
-import org.springframework.core.serializer.Serializer;
 
 @Entity
 public class Car implements Serializable {
