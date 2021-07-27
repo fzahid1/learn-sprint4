@@ -3,6 +3,7 @@ package com.sprintfour.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,13 @@ public class CityController {
     //Read
     @GetMapping("/get/{id}")
     public City getCity(@PathVariable Long id) {
-        return repo.findById(id).get();
+        try {
+            return repo.findById(id).get();
+        }
+        catch(Exception e) {
+            return null;
+        }
+        
         
     }
 
@@ -44,20 +51,38 @@ public class CityController {
     //Update
     @PutMapping("/update/{id}")
     public City update(@PathVariable Long id, @RequestBody City newCity) {
-        City city = repo.findById(id).get();
-        if(newCity.getName() != null) {
-            city.setName(newCity.getName());
+        try {
+            City city = repo.findById(id).get();
+            if(newCity.getName() != null) {
+                city.setName(newCity.getName());
+            }
+            if(newCity.getState() != null) {
+                city.setState(newCity.getState());
+            }
+            if(newCity.getPopulation() != null) {
+                city.setPopulation(newCity.getPopulation());
+            }
+            return repo.save(city);
         }
-        if(newCity.getState() != null) {
-            city.setState(newCity.getState());
+        catch(Exception e) {
+            return null;
         }
-        if(newCity.getPopulation() != null) {
-            city.setPopulation(newCity.getPopulation());
-        }
-        return repo.save(city);
+
     }
 
     //Destroy
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        try {
+            City toDelete = repo.findById(id).get();
+            repo.delete(toDelete);  
+            return "deleted city with name " + toDelete.getName();
+        }
+        catch(Exception e) {
+            return null;
+        }
+      
+    }
 
 
 
