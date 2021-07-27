@@ -25,6 +25,10 @@ public class Car {
         this.model = model;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
     public String getYear() {
         return this.year;
     }
