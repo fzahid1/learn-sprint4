@@ -1,21 +1,34 @@
 package com.sprintfour.api;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.GenerationType;
+import java.util.UUID;
+
+@Entity
 public class Snack {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
     private String name;
-    private Integer ID;
     private Double cost; 
 
-    public Snack(String name, Integer ID, Double cost){
-        this.ID = ID;
+    public Snack() {}
+    public Snack(String name, UUID id, Double cost){
+        this.id = id;
         this.name = name;
         this.cost = cost;
     }
 
-    public int getID(){
-        return this.ID;
+    public UUID getId(){
+        return this.id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName(){
@@ -31,6 +44,6 @@ public class Snack {
     }
 
     public void setCost(Double cost) {
-        this.cose = cost;
+        this.cost = cost;
     }
 }
