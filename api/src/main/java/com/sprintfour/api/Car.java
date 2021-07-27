@@ -1,14 +1,20 @@
 package com.sprintfour.api;
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.*;
 
+import org.springframework.core.serializer.Serializer;
+
 @Entity
-public class Car {
+public class Car implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private UUID id;
+    private Integer id;
+
+
+
 
     private String year;
     private String make;
@@ -24,14 +30,15 @@ public class Car {
         this.make = make;
         this.model = model;
     }
-
-	public UUID getId() {
+    public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
     public String getYear() {
         return this.year;
     }

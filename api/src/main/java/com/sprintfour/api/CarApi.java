@@ -20,17 +20,18 @@ public class CarApi {
     }
 
     @GetMapping("/cars/{id}")
-    public Car getCarById(@PathVariable UUID id){
-        return repo.getById(id);
+    public Car getCarById(@PathVariable Integer id){
+        return repo.findById(id).get();
     }
+    
 
     @PostMapping("/cars")
     public Car addCar(@RequestBody Car car) {
         return repo.save(car);
     }
 
-    @PostMapping("/cars/year")
-    public Car updateYear(@PathVariable UUID id, @RequestBody Car car) {
+    @PostMapping("/cars/{id}/year")
+    public Car updateYear(@PathVariable Integer id, @RequestBody Car car) {
         Car carToEdit = repo.findById(id).orElse(null);
 
         if(carToEdit == null) {
@@ -41,8 +42,8 @@ public class CarApi {
         return repo.save(carToEdit);
     }
 
-    @PostMapping("/cars/make")
-    public Car updateMake(@PathVariable UUID id, @RequestBody Car car) {
+    @PostMapping("/cars/{id}/make")
+    public Car updateMake(@PathVariable Integer id, @RequestBody Car car) {
         Car carToEdit = repo.findById(id).orElse(null);
 
         if(carToEdit == null) {
@@ -53,8 +54,8 @@ public class CarApi {
         return repo.save(carToEdit);
     }
 
-    @PostMapping("/cars/model")
-    public Car updateModel(@PathVariable UUID id, @RequestBody Car car) {
+    @PostMapping("/cars/{id}/model")
+    public Car updateModel(@PathVariable Integer id, @RequestBody Car car) {
         Car carToEdit = repo.findById(id).orElse(null);
 
         if(carToEdit == null) {
@@ -66,6 +67,16 @@ public class CarApi {
         return repo.save(carToEdit);
     }
 
+    @DeleteMapping("/cars/{id}")
+    public void deleteCar(@PathVariable Integer id){
+
+        if(repo.existsById(id)){
+            repo.deleteById(id);
+        }else{
+            throw new  ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+
+    }
 
 
 
