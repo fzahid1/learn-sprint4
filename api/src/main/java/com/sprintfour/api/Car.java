@@ -13,8 +13,9 @@ public class Car {
     private String year;
     private String make;
     private String model;
+    
     public Car(){
-        
+
     }
 
     public Car(String year, String make, String model) {
