@@ -13,7 +13,7 @@ public class Car {
     private String year;
     private String make;
     private String model;
-    
+
     public Car(){
 
     }
@@ -25,10 +25,13 @@ public class Car {
         this.model = model;
     }
 
-    public String getId() {
-        return this.id;
-    }
+	public UUID getId() {
+		return this.id;
+	}
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
     public String getYear() {
         return this.year;
     }
